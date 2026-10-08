@@ -1,0 +1,46 @@
+# This workspace also contains private screenshots and old application packages.
+# Publish only the explicitly maintained source/documentation directories below.
+/*
+!/.gitignore
+!/.gitattributes
+!/README.md
+!/LICENSE
+!/THIRD_PARTY_NOTICES.md
+!/mac-app/
+!/windows-app/
+!/docs/
+!/promo/
+
+# Generated artifacts and local state
+.DS_Store
+._*
+__pycache__/
+*.pyc
+*.log
+*.pid
+*.test
+*.out
+*.app/
+*.exe
+*.dll
+*.dylib
+*.zip
+*.mp4
+*.wav
+*.mp3
+*.aiff
+*.env
+.env
+.env.*
+communications.json
+config.json
+settings.json
+node_modules/
+.idea/
+.vscode/
+/mac-app/build/
+/windows-app/validation.json
+/windows-app/backend/docs/images/
+/promo/**/audio/metadata.json
+/promo/**/audio/validation.json
+/promo/**/frames-*/

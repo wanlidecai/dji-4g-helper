@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark"><title>碗里的菜</title>
+<script>try{const t=localStorage.getItem('wlc-theme')||localStorage.getItem('djonehub-theme');if(t==='light'||t==='dark')document.documentElement.dataset.theme=t;}catch(_){}</script>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs>
+<symbol id="i-message" viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-8 8H4l1.7-4.2A8 8 0 1 1 20 11.5Z"/><path d="M8 10h8M8 13h5"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="m7 3 3 5-2 2a14 14 0 0 0 6 6l2-2 5 3-1 4C10 22 2 14 3 4Z"/></symbol>
+<symbol id="i-network" viewBox="0 0 24 24"><path d="M4 17h2v4H4zM9 12h2v9H9zM14 7h2v14h-2zM19 3h2v18h-2z"/></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><path d="m9 3-.6 2-2 .9-2-.5-2 3 1.5 1.6v2l-1.5 1.5 2 3 2-.5 2 .9.6 2.1h4l.7-2.1 2-.9 2 .5 2-3-1.5-1.6v-2l1.5-1.5-2-3-2 .5-2-.9L13 3Z"/><circle cx="11" cy="11.5" r="3"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 8a8 8 0 1 0 .4 7M20 3v5h-5"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><path d="M5 17h14l-2-3V9a5 5 0 0 0-10 0v5ZM10 21h4"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6"/></symbol>
+<symbol id="i-back" viewBox="0 0 24 24"><path d="M19 12H5m6-6-6 6 6 6"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+<symbol id="i-delete" viewBox="0 0 24 24"><path d="M9 5h12v14H9l-6-7ZM12 9l5 6m0-6-5 6"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="m3 3 18 9-18 9 3-9Zm3 9h15"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v13m-5-5 5 5 5-5M5 20h14"/></symbol>
+<symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 17V4m-5 5 5-5 5 5M5 20h14"/></symbol>
+</defs></svg>
+<div class="app-shell">
+<aside class="sidebar">
+  <a class="brand" href="?view=network" aria-label="碗里的菜，网络首页">
+    <svg class="brand-icon" viewBox="0 0 52 52" aria-hidden="true"><rect width="52" height="52" rx="16" fill="currentColor"/><path d="M12 27h28c-1 9-6 14-14 14S13 36 12 27Z" fill="#F4F0E7"/><path d="M22 25c-2-7 2-12 9-14 1 7-3 12-9 14Z" fill="#B4CEAC"/><path d="m23 25 8-10" stroke="#F4F0E7" stroke-width="1.4" stroke-linecap="round"/><path d="M16 44h20" stroke="#F4F0E7" stroke-width="2" stroke-linecap="round"/></svg>
+    <span><strong>碗里的菜</strong><small>随时保持联系</small></span>
+  </a>
+  <nav class="task-nav" aria-label="主要功能">
+    <button class="tab active" data-view="network" aria-current="page"><svg><use href="#i-network"/></svg><span>首页</span></button>
+    <button class="tab" data-view="sms"><svg><use href="#i-message"/></svg><span>短信</span><small id="sms-badge" class="nav-badge" hidden>0</small></button>
+    <button class="tab" data-view="calls"><svg><use href="#i-phone"/></svg><span>通话</span><small id="calls-badge" class="nav-badge" hidden>0</small></button>
+    <button class="tab" data-view="settings"><svg><use href="#i-settings"/></svg><span>设备设置</span></button>
+  </nav>
+  <div class="sidebar-bottom">
+    <div class="device-card"><span class="connection-dot" id="connection-dot"></span><div><strong id="device-connection">正在连接模块</strong><small id="device-summary">等待设备状态</small></div></div>
+    <span class="sidebar-footnote">你的消息，留在你的电脑上</span>
+  </div>
+</aside>
+<main class="app-main">
+  <header class="app-header"><div><p class="eyebrow" id="page-eyebrow">OVERVIEW</p><h1 id="page-title">网络概览</h1><p class="page-description" id="page-description">查看当前连接、信号和流量。</p></div><div class="header-actions"><span class="connection-pill"><span class="connection-dot"></span><span id="header-carrier">正在连接</span></span><button id="refresh" class="secondary icon-button" aria-label="刷新状态" title="刷新状态"><svg><use href="#i-refresh"/></svg></button></div></header>
+  <div id="demo-notice" class="demo-notice" role="status" hidden><strong>演示模式 · 使用示例数据</strong><span>当前显示的号码、短信与通话均为演示内容。</span></div>
+  <section id="incoming-banner" class="incoming-banner" aria-live="polite" hidden><div class="banner-phone"><svg><use href="#i-phone"/></svg></div><div class="banner-copy"><small id="incoming-banner-label">收到来电</small><strong id="incoming-banner-number">未知号码</strong></div><button id="banner-view-call" class="secondary compact">查看通话</button><button id="banner-answer" class="compact">接听</button><button id="banner-hangup" class="danger compact">挂断</button></section>
+
+  <section id="sms" class="view">
+    <div class="section-toolbar"><div class="segmented" role="group" aria-label="短信筛选"><button id="sms-filter-all" class="selected" type="button">全部短信 <span id="sms-count">0</span></button><button id="sms-filter-unread" type="button">未读 <span id="sms-unread-count">0</span></button></div><div class="heading-actions"><button id="mark-sms-read" class="text-button">全部已读</button><button id="refresh-sms" class="secondary icon-button" title="读取短信" aria-label="读取短信"><svg><use href="#i-refresh"/></svg></button><button id="new-sms" type="button"><svg><use href="#i-plus"/></svg>写短信</button></div></div>
+    <div class="messages-panel">
+      <div class="inbox"><label class="search-field"><svg><use href="#i-search"/></svg><input id="sms-search" type="search" placeholder="搜索号码或内容" aria-label="搜索短信"></label><div id="sms-list" class="message-list empty">正在读取短信…</div><p id="sms-status" class="inbox-status">收件箱自动更新</p></div>
+      <article id="sms-detail" class="message-detail"><div class="empty-state"><div class="empty-illustration"><svg><use href="#i-message"/></svg><span class="illustration-spark">✦</span></div><h2>每一条消息，都在这里</h2><p>选择一条短信查看内容，<br>或写一条新的问候。</p><button class="secondary" id="empty-new-sms"><svg><use href="#i-plus"/></svg>写短信</button></div></article>
+    </div>
+  </section>
+
+  <section id="calls" class="view">
+    <div class="calls-layout"><div class="dialer-card"><div class="card-heading"><h2>拨打电话</h2><span class="muted-chip">SIM 号码</span></div><label class="sr-only" for="call-number">拨号号码</label><input id="call-number" class="dial-number" type="tel" inputmode="tel" autocomplete="tel" maxlength="24" placeholder="输入电话号码"><div id="dialpad" class="dialpad"></div><div class="dial-actions"><span></span><button id="dial-call" class="round-call" disabled aria-label="拨打电话" title="拨打电话"><svg><use href="#i-phone"/></svg></button><button id="dial-backspace" class="text-button icon-button" aria-label="删除一个数字"><svg><use href="#i-delete"/></svg></button></div><p id="dial-status" class="dial-status">等待模块就绪</p></div>
+    <div class="call-right"><section id="active-call" class="active-call" hidden><span class="pulse-ring"><svg><use href="#i-phone"/></svg></span><span id="active-call-label">正在来电</span><strong id="active-call-number">未知号码</strong><small id="active-call-time"></small><div class="control-panel"><button id="answer-call">接听</button><button id="hangup-call" class="danger">挂断</button></div></section><section id="call-audio-card" class="call-audio-card"><svg><use href="#i-phone"/></svg><div><strong id="call-capability-title">正在确认通话能力</strong><p id="call-capability-detail">将根据模块状态显示可用的通话操作。</p><small id="call-monitor-status">正在连接模块</small></div></section><section class="history-card"><div class="card-heading"><h2>最近通话</h2><span id="call-history-count" class="muted-chip">0 条</span></div><div class="history-filters"><button id="call-filter-all" class="selected">全部</button><button id="call-filter-missed">未接来电</button></div><div id="call-history" class="list empty">还没有通话记录</div></section></div></div>
+  </section>
+
+  <section id="network" class="view active">
+    <div class="network-hero"><div><span class="section-kicker">让连接安稳一点</span><h2>4G 网络</h2><p id="network-hero-description">唤醒后先检测网络，连接正常就保持现状。</p></div><div class="network-policy-control"><span><strong>允许使用 4G</strong><small id="policy-copy">Wi‑Fi 优先，4G 备用</small></span><button id="cellular-policy-toggle" class="network-policy-toggle" type="button" role="switch" aria-checked="true" aria-label="允许使用 4G"><span class="switch-thumb"></span></button></div></div>
+    <div class="status-grid"><div><span>运营商</span><strong id="operator">--</strong></div><div><span>信号强度</span><strong id="signal">--</strong></div><div><span>蜂窝网络</span><strong id="network-mode">--</strong></div><div><span>SIM 卡</span><strong id="sim">--</strong></div><div><span>工作模式</span><strong id="work-mode">--</strong></div></div>
+    <section class="surface-card"><div class="card-heading"><h2>本次流量</h2><span class="muted-chip">本次启动以来</span></div><div class="traffic-grid"><div class="traffic-main"><span>已使用流量</span><strong id="traffic-session-total">--</strong><small>下载 <span id="traffic-session-rx">--</span> · 上传 <span id="traffic-session-tx">--</span></small></div><div><span><svg><use href="#i-download"/></svg>下载速度</span><strong id="traffic-rx-rate">--</strong></div><div><span><svg><use href="#i-upload"/></svg>上传速度</span><strong id="traffic-tx-rate">--</strong></div></div></section>
+    <section class="surface-card"><div class="card-heading"><h2>连接与模式</h2><button id="refresh-network" class="secondary compact">刷新</button></div><p id="platform-network-hint">切换模式时模块会重新连接，网络可能短暂中断。</p><div class="control-panel"><button id="enable-rndis">开启上网模式</button><button id="enable-sms-mode" class="secondary">仅短信模式</button><button id="check-4g-route" class="secondary">检测 4G 连接</button></div><p id="usb-mode-status" class="inline-status"></p><div id="network-checks" class="list empty">可手动检测大疆网卡的网络连接。</div></section>
+    <details class="surface-card advanced-section"><summary>网络详情 <span>接口、地址与诊断</span></summary><p id="network-status" class="inline-status">尚未读取网络状态</p><div id="network-grid" class="diagnostic-grid"></div><h3>电脑网络接口</h3><div id="network-interfaces" class="list empty">尚未读取接口</div><div class="control-panel"><button id="check-proxy-route" class="secondary compact">检测代理</button></div></details>
+  </section>
+
+  <section id="settings" class="view">
+    <section class="surface-card"><div class="card-heading"><h2>消息通知</h2><svg class="setting-icon"><use href="#i-bell"/></svg></div><div class="settings-row"><div><strong>新短信与来电提醒</strong><p id="notification-description">关闭窗口后，应用仍在后台提醒新短信和来电。</p></div><button id="notification-settings" class="secondary">通知设置</button></div><p class="settings-note">通知内容受系统的隐私与专注模式设置影响。</p></section>
+    <section class="surface-card"><div class="card-heading"><h2>外观</h2></div><div class="settings-row"><div><strong>选择适合你的外观</strong><p>浅色、深色，或跟随系统。</p></div><div class="theme-switch" role="group" aria-label="应用外观"><button class="theme-option" data-theme-option="light" aria-pressed="false">浅色</button><button class="theme-option" data-theme-option="dark" aria-pressed="false">深色</button><button class="theme-option" data-theme-option="auto" aria-pressed="true">自动</button></div></div></section>
+    <details class="surface-card"><summary>设备信息 <span>连接与硬件详情</span></summary><section id="hardware-details" class="hardware-details" hidden></section><p id="workmode-status" class="inline-status" hidden></p></details>
+    <details id="esim-settings" class="surface-card"><summary>eSIM 与卡片管理 <span>号码、配置与卡片信息</span></summary>
+    <section id="esim" class="settings-section">
+      
+      <div class="section-heading">
+        <h2>eSIM 与卡片</h2>
+        <button id="refresh-esim" class="secondary">刷新</button>
+      </div>
+      <p id="esim-status" class="inline-status">使用 eSIM 转换卡时，可在这里管理卡内号码；普通 SIM 无需设置。</p>
+      <details id="esim-download-section" class="fold-panel esim-download">
+        <summary><span>下载新 Profile</span><small>SM-DP+ 激活信息</small></summary>
+        <form id="esim-download-form" class="esim-download-grid">
+          <input id="esim-smdp" placeholder="SM-DP+ 地址" required>
+          <input id="esim-matching-id" placeholder="Matching ID（可选）">
+          <input id="esim-confirmation-code" placeholder="确认码（可选）">
+          <input id="esim-imei" inputmode="numeric" maxlength="15" placeholder="模块 IMEI（必填）" required>
+          <input id="esim-aid" placeholder="目标 eUICC AID（可选）">
+          <button type="submit">开始下载</button>
+        </form>
+        <p id="esim-download-status" class="inline-status">填写运营商提供的激活信息后才会执行下载。</p>
+      </details>
+
+      <details id="esim-profile-panel" class="profile-panel" open>
+        <summary class="profile-panel-heading"><span class="profile-panel-title"><span class="section-kicker">INSTALLED PROFILES</span><strong>已安装的 Profile</strong></span><small>启用、改名或删除卡内 Profile。</small></summary>
+        <div class="profile-panel-content">
+        <details class="fold-panel">
+          <summary><span>卡片概览</span><small>卡类型、固件、EID</small></summary>
+          <div id="esim-chip" class="diagnostic-grid" hidden></div>
+        </details>
+        <details id="esim-runtime-section" class="fold-panel" hidden>
+          <summary><span>当前 Profile 运行状态</span><small>自动刷新</small></summary>
+          <div id="esim-runtime" class="diagnostic-grid"></div>
+        </details>
+        <details id="esim-phonebook-section" class="fold-panel" hidden>
+          <summary><span>卡片通讯录兼容性</span><small>只读检测</small></summary>
+          <div class="phonebook-probe">
+            <p id="esim-phonebook-status" class="inline-status">检测当前 Profile 是否支持卡内通讯录；不会写入联系人。</p>
+            <button id="probe-esim-phonebook" class="secondary compact" type="button">检测当前卡片</button>
+            <div id="esim-phonebook-result" class="phonebook-result" hidden></div>
+          </div>
+        </details>
+        <div id="esim-list" class="list empty">尚未读取 eUICC/eSIM 卡片</div>
+        </div>
+      </details>
+    </section>
+
+
+    </details>
+    <details class="surface-card advanced-section"><summary>高级工具 <span>模块诊断与短信维护</span></summary><p class="inline-status">仅在需要排查设备问题时使用。</p><h3>模块诊断</h3><form id="at-form" class="toolbar"><label class="sr-only" for="at-command">AT 指令</label><input id="at-command" type="text" value="AT+CSQ" spellcheck="false" required><button type="submit">执行</button></form><pre id="at-output">等待命令</pre><h3>短信存储维护</h3><p>清理模块内部旧短信，保留已接收的本地记录和 SIM 短信。</p><button id="clear-module-sms" class="secondary danger">清理模块旧短信</button></details>
+    <div class="about-app"><svg class="mini-brand" viewBox="0 0 32 32"><path d="M4 15h24c-1 8-5 12-12 12S5 23 4 15Z" fill="currentColor"/><path d="M14 13c-1-6 2-9 8-10 0 5-3 9-8 10Z" fill="currentColor"/></svg><div><strong>碗里的菜</strong><p>一个安静陪伴的通讯助手 · 1.2.1</p></div></div>
+  </section>
+</main></div>
+
+<div id="compose-modal" class="modal-backdrop" hidden><form id="send-form" class="modal-dialog compose-dialog" role="dialog" aria-modal="true" aria-labelledby="compose-title"><div class="modal-heading"><div><span class="section-kicker">送出一句问候</span><h2 id="compose-title">写短信</h2></div><button id="compose-close" class="secondary icon-button" type="button" aria-label="关闭写短信"><svg><use href="#i-close"/></svg></button></div><label class="compose-field"><span>收件人</span><input id="phone" type="tel" placeholder="输入电话号码" autocomplete="tel" required></label><label class="compose-field"><span>内容</span><textarea id="message" placeholder="想说点什么？" maxlength="1000" rows="7" required></textarea></label><div class="compose-footer"><small><span id="message-length">0</span> / 1000 · 由当前 SIM 发送</small><button type="submit"><svg><use href="#i-send"/></svg>发送短信</button></div><p id="send-status" class="inline-status" aria-live="polite"></p></form></div>
+<div id="app-modal" class="modal-backdrop" hidden><form id="modal-form" class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-heading"><h2 id="modal-title">确认操作</h2><button id="modal-close" class="secondary icon-button" type="button" aria-label="关闭"><svg><use href="#i-close"/></svg></button></div><p id="modal-message" class="modal-message" hidden></p><div id="modal-fields" class="modal-fields"></div><div class="modal-actions"><button id="modal-cancel" class="secondary" type="button">取消</button><button id="modal-confirm" type="submit">确定</button></div></form></div>
+<div id="notice" role="status" aria-live="polite"></div>
+<script src="/app.js"></script></body></html>

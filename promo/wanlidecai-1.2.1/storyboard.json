@@ -1,0 +1,82 @@
+{
+  "name": "碗里的菜",
+  "version": "1.2.1",
+  "duration": 48,
+  "fps": 30,
+  "scene_duration": 6,
+  "voice": "zh-CN-XiaoxiaoNeural",
+  "scenes": [
+    {
+      "index": 1,
+      "start": 0,
+      "end": 6,
+      "title": "碗里的菜",
+      "subtitle": "让模块管理，更简单",
+      "voice_text": "碗里的菜，让大疆四G模块管理，更简单。",
+      "caption": "碗里的菜，让大疆 4G 模块管理，更简单。"
+    },
+    {
+      "index": 2,
+      "start": 6,
+      "end": 12,
+      "title": "连接情况，一眼看清",
+      "subtitle": "首页 · 信号 · 流量",
+      "voice_text": "打开首页，信号、网络和实时流量，一眼看清。",
+      "caption": "打开首页，信号、网络和实时流量，一眼看清。"
+    },
+    {
+      "index": 3,
+      "start": 12,
+      "end": 18,
+      "title": "关掉窗口，继续陪伴",
+      "subtitle": "安静留在后台",
+      "voice_text": "关掉窗口，服务继续在后台运行，桌面更清爽。",
+      "caption": "关掉窗口，服务继续在后台运行，桌面更清爽。"
+    },
+    {
+      "index": 4,
+      "start": 18,
+      "end": 24,
+      "title": "醒来之后，先检查",
+      "subtitle": "有网就保持连接",
+      "voice_text": "电脑醒来，先检查连接。网络正常，就不重新切换。",
+      "caption": "电脑醒来，先检查连接。网络正常，就不重新切换。"
+    },
+    {
+      "index": 5,
+      "start": 24,
+      "end": 30,
+      "title": "每条短信，清楚有序",
+      "subtitle": "查看 · 搜索 · 复制验证码",
+      "voice_text": "短信独立管理，查看消息，复制验证码，也能写短信。",
+      "caption": "短信独立管理，查看消息，复制验证码，也能写短信。"
+    },
+    {
+      "index": 6,
+      "start": 30,
+      "end": 36,
+      "title": "重要消息，及时提醒",
+      "subtitle": "新短信 · 来电 · 未接来电",
+      "voice_text": "来电、新短信、未接来电，都有系统提醒。",
+      "caption": "来电、新短信、未接来电，都有系统提醒。"
+    },
+    {
+      "index": 7,
+      "start": 36,
+      "end": 42,
+      "title": "准备好，随时打开",
+      "subtitle": "Mac App · Windows EXE",
+      "voice_text": "Mac应用和Windows程序，已提供打包版本。",
+      "caption": "Mac 应用和 Windows 程序，已提供打包版本。"
+    },
+    {
+      "index": 8,
+      "start": 42,
+      "end": 48,
+      "title": "碗里的菜",
+      "subtitle": "把连接和消息，照顾妥当",
+      "voice_text": "碗里的菜，把连接和消息，照顾得井井有条。",
+      "caption": "碗里的菜，把连接和消息，照顾得井井有条。"
+    }
+  ]
+}

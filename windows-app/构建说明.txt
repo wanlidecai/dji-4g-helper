@@ -1,0 +1,14 @@
+共享后端源代码位于 windows-app/backend，包含Windows移植与本项目的网络、短信和通话改动；macOS应用也使用此后端重新编译。
+
+需要Go 1.26.3以上，Windows x64的libusb1.0 DLL，Python3用于复制许可证和打ZIP。
+构建示例：
+python3 windows-app/build.py --go /path/to/go --libusb-dll /path/to/libusb-1.0.dll --zadig /path/to/zadig-2.9.exe
+
+可在macOS/Linux交叉编译；不要把macOS dylib交给--libusb-dll。
+两个主程序使用GOOS=windows GOARCH=amd64 CGO_ENABLED=0，-H=windowsgui。
+WinUSB接口驱动按包内使用说明手动安装；程序不会自动换USB驱动。
+后端有共享业务测试和专门唤醒测试。Windows系统API、托盘、硬件网络与真实休眠仍需要Windows实机验证。
+构建时遇Go依赖镜像访问问题，可使用GOPROXY=https://goproxy.cn；既有go.sum仍验证下载内容。
+
+Windows托盘入口现在是 launcher.go + notifications_windows.go，共享事件解析在 events.go。构建使用go build .，将app_windows_amd64.syso中的品牌图标嵌入EXE。修改品牌图标时可用Pillow运行 python3 windows-app/make-resource.py /path/to/256.png；日常构建无需Pillow或windres。
+运行原生通知事件测试：在主机 windows-app 目录执行 go test -race .（仅共享解析/游标/去重/UTF16逻辑，不执行Windows系统API）。Windows下的Shell_NotifyIconW、GetExtendedTcpTable、原生菜单和真实事件仍需实机验证。

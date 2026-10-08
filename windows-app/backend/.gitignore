@@ -1,0 +1,24 @@
+.DS_Store
+._*
+
+# Build outputs
+/dist/
+/bin/
+**/.build/
+**/dist/
+backups/
+.cache/
+*.test
+*.out
+
+# Local runtime data and logs
+*.log
+*.pid
+
+# Editor files
+.idea/
+.vscode/
+*.swp
+
+# Frontend dependencies are not used by the native DJOneHub page
+node_modules/
