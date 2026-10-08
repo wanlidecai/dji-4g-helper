@@ -1,16 +1,16 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>碗里的菜 · 宣传动画</title>
+<title>大疆4g模块辅助工具 · 宣传动画</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:#f8f7f2;color:#27352b;font:16px -apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;padding:26px}main{max-width:1200px;margin:auto}header{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:22px}.brand{display:flex;align-items:center;gap:16px}.brand img{width:62px;height:62px}h1{font-size:25px;margin:0 0 6px}p{color:#747f71;line-height:1.6;margin:0}.formats{display:flex;gap:10px}button,a{font:inherit;border-radius:13px;padding:11px 17px;cursor:pointer;border:1px solid #dfe3d8;background:#fffefa;color:#28634e;text-decoration:none}button.active,#play{background:#28634e;color:white;border-color:#28634e}.screen{border:1px solid #dfe3d8;background:#eeeee8;border-radius:24px;padding:12px;box-shadow:0 14px 60px #264b3020;display:flex;justify-content:center}video{display:block;max-width:100%;width:100%;max-height:70vh;background:#f8f7f2;border-radius:15px}.portrait video{width:auto;height:70vh;aspect-ratio:9/16}footer{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-top:18px}.controls{display:flex;gap:10px;align-items:center}#status{font-size:14px;color:#747f71}.note{font-size:13px;margin-top:22px;line-height:1.8}@media(max-width:700px){body{padding:16px}header,footer{flex-direction:column;align-items:flex-start}h1{font-size:21px}.brand img{width:50px;height:50px}video{max-height:62vh}.portrait video{height:62vh}.formats{width:100%}.formats button{flex:1}}
 </style></head><body><main>
-<header><div class="brand"><img src="assets/AppIcon.png" alt="碗里的菜图标"><div><h1>碗里的菜 · 4G 模块助手</h1><p>48 秒产品动画 · 中文女声 · 字幕 · 原创配乐</p></div></div><div class="formats"><button id="horizontal" class="active">横屏 16:9</button><button id="vertical">竖屏 9:16</button></div></header>
-<div id="screen" class="screen"><video id="promo" controls preload="metadata" playsinline poster="封面-横屏.jpg" src="碗里的菜-宣传动画-横屏-配音版.mp4"></video></div>
-<footer><div class="controls"><button id="play">播放</button><button id="pause">暂停</button><span id="status" role="status">准备播放</span></div><a id="download" href="碗里的菜-宣传动画-横屏-配音版.mp4" download>下载当前版本</a></footer>
+<header><div class="brand"><img src="assets/AppIcon.png" alt="大疆4g模块辅助工具图标"><div><h1>大疆4g模块辅助工具</h1><p>48 秒产品动画 · 中文女声 · 字幕 · 原创配乐</p></div></div><div class="formats"><button id="horizontal" class="active">横屏 16:9</button><button id="vertical">竖屏 9:16</button></div></header>
+<div id="screen" class="screen"><video id="promo" controls preload="metadata" playsinline poster="封面-横屏.jpg" src="大疆4g模块辅助工具-宣传动画-横屏-配音版.mp4"></video></div>
+<footer><div class="controls"><button id="play">播放</button><button id="pause">暂停</button><span id="status" role="status">准备播放</span></div><a id="download" href="大疆4g模块辅助工具-宣传动画-横屏-配音版.mp4" download>下载当前版本</a></footer>
 <p class="note">画面中的界面与数字为动画示意和示例数据。Windows 已提供安装包，实机兼容性仍待验证；电脑双向通话音频尚未实现。本项目为独立第三方工具，非大疆官方应用。</p>
 </main><script>
 const video=document.getElementById('promo'),status=document.getElementById('status');
-const files={horizontal:['碗里的菜-宣传动画-横屏-配音版.mp4','封面-横屏.jpg'],vertical:['碗里的菜-宣传动画-竖屏-配音版.mp4','封面-竖屏.jpg']};
+const files={horizontal:['大疆4g模块辅助工具-宣传动画-横屏-配音版.mp4','封面-横屏.jpg'],vertical:['大疆4g模块辅助工具-宣传动画-竖屏-配音版.mp4','封面-竖屏.jpg']};
 function update(){status.textContent=(video.paused?'已暂停':'播放中')+' · '+video.currentTime.toFixed(1)+' / '+(Number.isFinite(video.duration)?video.duration.toFixed(1):'48.0')+' 秒';}
 document.getElementById('play').onclick=()=>{video.muted=false;video.volume=1;video.play().catch(()=>status.textContent='请使用视频控件播放');};
 document.getElementById('pause').onclick=()=>video.pause();

@@ -1,0 +1,5 @@
+36857d07792baf156c4c3fb6979b0fd0862e244a11cbbc139b58b09caeb7ce2a  dji-4g-helper-Mac-1.2.2.zip
+b5e31ec525534562570796e56138eec92484618f06d2d60888842390aaf0db4c  dji-4g-helper-Windows-x64-1.2.2.zip
+0ffd8f7670bfea211c7ebbbd55914581f380259eefb64465ca7d775c23797098  dji-4g-helper-promo-landscape-1.2.2.mp4
+d3c4867b7b64779439abbb1ede4448428d34a68afd8b2a7e5ed55f9f02b3f568  dji-4g-helper-promo-portrait-1.2.2.mp4
+9d7ed83d4998fd9f33bf3e6adfa9a7ccb81910a5cda7d3a64b79abb033418368  dji-4g-helper-promo-materials-1.2.2.zip

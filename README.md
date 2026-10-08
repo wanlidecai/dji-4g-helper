@@ -1,4 +1,4 @@
-# 碗里的菜
+# 大疆4g模块辅助工具
 
 把大疆第一代 4G 模块的网络和消息管理放进一个可以常驻后台的小工具。首页查看网络，短信和通话各有独立页面；关闭窗口后，服务继续运行。
 
@@ -10,14 +10,14 @@
 
 ## 下载与使用
 
-下载 [v1.2.1 发布页](https://github.com/wanlidecai/wanlidecai-4g/releases/tag/v1.2.1) 中对应系统的 ZIP，无需安装开发环境。发布页也提供横屏、竖屏宣传视频。
+下载 [v1.2.2 发布页](https://github.com/wanlidecai/dji-4g-helper/releases/tag/v1.2.2) 中对应系统的 ZIP，无需安装开发环境。发布页也提供横屏、竖屏宣传视频。
 
 [宣传动画源码与重新制作说明](promo/README.md)
 
 | 系统 | 下载文件 | 使用方式 |
 | --- | --- | --- |
-| Apple 芯片 Mac，macOS 13 及以上 | `wanlidecai-Mac-1.2.1.zip` | 解压后将 `碗里的菜.app` 放到应用程序目录，双击启动；从菜单栏打开首页、短信或通话。 |
-| Windows 10 / 11，Intel / AMD 64 位 | `wanlidecai-Windows-x64-1.2.1.zip` | 完整解压并保留 `runtime` 文件夹，双击 `碗里的菜.exe`；从右下角托盘打开页面。Windows 版仍待实机验证。 |
+| Apple 芯片 Mac，macOS 13 及以上 | `dji-4g-helper-Mac-1.2.2.zip` | 解压后将 `大疆4g模块辅助工具.app` 放到应用程序目录，双击启动；从菜单栏打开首页、短信或通话。 |
+| Windows 10 / 11，Intel / AMD 64 位 | `dji-4g-helper-Windows-x64-1.2.2.zip` | 完整解压并保留 `runtime` 文件夹，双击 `大疆4g模块辅助工具.exe`；从右下角托盘打开页面。Windows 版仍待实机验证。 |
 
 当前针对大疆第一代 4G 模块开发，已识别样机 USB ID 为 `2ca3:4006`。使用支持数据传输的 USB 线，并插入可用 SIM 卡。其他模块、固件和 SIM 的兼容性需要另行验证。
 
@@ -39,7 +39,7 @@ Mac 版本使用本机临时签名，尚未进行 Apple Developer ID 公证，�
 
 ## 验证范围
 
-Apple 芯片 Mac 已完成应用构建、签名检查、后台运行和真实模块连接验证。共享后端与通知 / 唤醒逻辑有单元测试和演示流程验证；联网正常时的模拟唤醒确认没有重新切换网络。v1.2.1 将网络概览设为首页。
+Apple 芯片 Mac 已完成应用构建、签名检查、后台运行和真实模块连接验证。共享后端与通知 / 唤醒逻辑有单元测试和演示流程验证；联网正常时的模拟唤醒确认没有重新切换网络。当前默认首页为网络概览。
 
 以下仍需实机验证：
 
@@ -75,19 +75,19 @@ Mac 后端数据位于 `~/Library/Application Support/DJOneHub/`，应用状态�
 ```sh
 xcode-select --install
 brew install go pkg-config libusb
-git clone https://github.com/wanlidecai/wanlidecai-4g.git
-cd wanlidecai-4g
-python3 mac-app/build.py --output build/碗里的菜.app
+git clone https://github.com/wanlidecai/dji-4g-helper.git
+cd dji-4g-helper
+python3 mac-app/build.py --output build/大疆4g模块辅助工具.app
 ```
 
-构建脚本重新编译共享后端和 Swift 应用，将本机 `pkg-config` 找到的 libusb 与许可证一并放入应用，最后执行本机临时签名及深度校验。可以用 `--go /path/to/go` 指定 Go；自定义 libusb 安装若没有完整许可文件，可加 `--libusb-license /path/to/COPYING`。也可用 `--runtime-source /path/to/碗里的菜.app/Contents/Resources/runtime` 复用已解压发布包的运行库，再重新编译本项目源码。
+构建脚本重新编译共享后端和 Swift 应用，将本机 `pkg-config` 找到的 libusb 与许可证一并放入应用，最后执行本机临时签名及深度校验。可以用 `--go /path/to/go` 指定 Go；自定义 libusb 安装若没有完整许可文件，可加 `--libusb-license /path/to/COPYING`。也可用 `--runtime-source /path/to/大疆4g模块辅助工具.app/Contents/Resources/runtime` 复用已解压发布包的运行库，再重新编译本项目源码。
 
 本地构建的最低 macOS 版本取决于实际使用的运行库，脚本会据此填写应用信息。例如本机 Homebrew 的 libusb 要求 macOS 15 时，构建结果也要求 macOS 15；上方发布包的 macOS 13 要求针对其随附的运行库。
 
 打包构建结果：
 
 ```sh
-ditto -c -k --keepParent --norsrc --noextattr build/碗里的菜.app 碗里的菜-Mac-local.zip
+ditto -c -k --keepParent --norsrc --noextattr build/大疆4g模块辅助工具.app 大疆4g模块辅助工具-Mac-local.zip
 ```
 
 ### Windows x64
@@ -98,7 +98,7 @@ ditto -c -k --keepParent --norsrc --noextattr build/碗里的菜.app 碗里的�
 python3 windows-app/build.py --go /path/to/go --libusb-dll /path/to/libusb-1.0.dll
 ```
 
-构建生成 `碗里的菜-Windows-x64-1.2.1/`、同名 ZIP 和包内 SHA-256 清单。可加 `--zadig /path/to/zadig-2.9.exe` 携带官方驱动工具；驱动安装仍由用户手动操作。
+构建生成 `大疆4g模块辅助工具-Windows-x64-1.2.2/`、同名 ZIP 和包内 SHA-256 清单。可加 `--zadig /path/to/zadig-2.9.exe` 携带官方驱动工具；驱动安装仍由用户手动操作。
 
 ### 开发测试
 

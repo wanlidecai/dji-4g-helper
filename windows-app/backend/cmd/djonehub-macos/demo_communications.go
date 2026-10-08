@@ -31,7 +31,7 @@ func (a *app) demoCommunicationEvent(w http.ResponseWriter, r *http.Request) {
 	case "sms":
 		a.completeSMSBaseline()
 		if body.Content == "" {
-			body.Content = "这是碗里的菜的演示短信通知。"
+			body.Content = "这是大疆4g模块辅助工具的演示短信通知。"
 		}
 		a.recordSMS(body.Number, body.Content, now)
 	case "incoming_call":

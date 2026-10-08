@@ -201,16 +201,23 @@ strong{
   align-items:center;
   text-decoration:none;
   padding:0 8px}
+.brand>span{
+  min-width:0}
 .brand-icon{
+  flex-shrink:0;
   width:45px;
   height:45px;
   stroke:none;
   color:#28634e}
 .brand strong{
   display:block;
-  font-size:18px;
+  font-size:14px;
+  line-height:1.4;
   font-weight:650;
   letter-spacing:.2px}
+.brand strong span{
+  display:block;
+  white-space:nowrap}
 .brand small{
   display:block;
   font-size:10px;
@@ -1422,7 +1429,7 @@ pre{
   width:37px;
   height:37px}
 .brand strong{
-  font-size:16px}
+  font-size:14px}
 .brand small{
   font-size:9px;
   letter-spacing:.2px}

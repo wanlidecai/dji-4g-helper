@@ -123,13 +123,13 @@ def note(im,s,y=676,color=MUTED):text(im,s,500,y,23,color,center=True)
 def window(im,x=28,y=32,w=944,h=620):
     card(im,x,y,w,h)
     for i,c in enumerate([(226,138,126),(223,194,126),(138,179,144)]):dot(im,x+27+i*23,y+25,6,c)
-    text(im,'碗里的菜',x+w/2,y+13,20,MUTED,center=True)
+    text(im,'大疆4g模块辅助工具',x+w/2,y+13,20,MUTED,center=True)
     line(im,[(x+1,y+50),(x+w-1,y+50)],BORDER,1)
     return x,y+50,w,h-50
 
 def sidebar(im,x,y,h,selected='首页'):
     rr(im,(x,y,x+170,y+h),20,CREAM)
-    paste(im,logo_at(44),x+20,y+23);text(im,'碗里的菜',x+72,y+31,22,INK,True)
+    paste(im,logo_at(44),x+20,y+23);text(im,'大疆4g',x+72,y+25,17,INK,True);text(im,'模块辅助工具',x+72,y+50,14,INK,True)
     for i,s in enumerate(['首页','短信','通话','设置']):
         yy=y+114+i*66
         if s==selected:rr(im,(x+14,yy-9,x+156,yy+43),14,SAGE)
@@ -181,7 +181,7 @@ def opening(st,t):
 def background(st,t):
     im=Image.new('RGBA',(1000,720));card(im,51,76,898,544,CREAM,28)
     rr(im,(73,96,927,146),14,SAGE);text(im,'菜单栏',97,112,23,MUTED)
-    paste(im,logo_at(35),824,103);text(im,'菜',867,109,22,GREEN,True)
+    paste(im,logo_at(35),636,103);text(im,'大疆4g模块辅助工具',686,109,22,GREEN,True)
     show=1-smooth((st-1.5)/.7)
     if show>.003:
         obj=overview(st,t).crop((0,0,1000,662)).resize((640,424),Image.Resampling.LANCZOS)
@@ -264,7 +264,7 @@ def notifications(st,t):
         if a<=0:continue
         layer=Image.new('RGBA',(1000,720));card(layer,xx,yy,742,141,r=26)
         paste(layer,logo_at(66),xx+25,yy+30)
-        text(layer,'碗里的菜',xx+113,yy+20,22,MUTED)
+        text(layer,'大疆4g模块辅助工具',xx+113,yy+20,22,MUTED)
         text(layer,title,xx+113,yy+55,29,INK,True)
         text(layer,body,xx+113,yy+96,24,MUTED)
         bell(layer,xx+683,yy+56,38)
@@ -296,12 +296,12 @@ def closing(st,t):
     size=258+round(6*math.sin(t*.8));paste(im,logo_at(size),cx-size/2,cy-size/2)
     text(im,'连接更清楚，消息更有序',500,483,35,GREEN,True,center=True)
     text(im,'网络首页  /  后台常驻  /  消息提醒',500,550,25,MUTED,center=True)
-    chip(im,'打开碗里的菜',389,603,28)
+    label='打开大疆4g模块辅助工具';badge_width=tile(label,28,GREEN,True).width+40;chip(im,label,(1000-badge_width)/2,603,28)
     note(im,'独立第三方工具，非大疆官方应用',682)
     return im
 
 VISUALS=[opening,overview,background,wake,sms,notifications,platforms,closing]
-CHAPTERS=['产品亮相','网络首页','后台常驻','唤醒检查','独立短信','消息通知','双平台打包','碗里的菜']
+CHAPTERS=['产品亮相','网络首页','后台常驻','唤醒检查','独立短信','消息通知','双平台打包','大疆4g模块辅助工具']
 
 @lru_cache(maxsize=2)
 def backdrop(w,h):
@@ -328,7 +328,7 @@ def content(scene,st,t,mode):
     story=STORY['scenes'][scene];entrance=ease(st/.65)
     tx=72 if portrait else 112;ty=225 if portrait else 279
     title_size=76 if portrait else 71
-    title_rows=wrap(story['title'],title_size,920) if portrait else story['title'].split('，')
+    title_rows=['大疆4g模块','辅助工具'] if scene in (0,7) else (wrap(story['title'],title_size,920) if portrait else story['title'].split('，'))
     for j,s in enumerate(title_rows):
         a=ease((st-j*.12)/.7)
         text(im,s,tx+25*(1-a),ty+j*(title_size+25)+15*(1-a),title_size,INK,True,alpha=a)
@@ -358,13 +358,27 @@ def frame(t,mode='landscape'):
         im=Image.blend(im,nxt,smooth((st-5.56)/.44))
     margin=72 if portrait else 112
     paste(im,logo_at(62),margin,60)
-    text(im,'碗里的菜',margin+84,67,33,INK,True)
+    text(im,'大疆4g模块辅助工具',margin+84,67,33,INK,True)
     text(im,'4G 模块助手',margin+84,108,21,MUTED)
     text(im,f'{scene+1:02d} / 08',w-margin-60,81,25,MUTED,center=True,latin=True)
     if .25<st<5.8:
         alpha=min(ease((st-.25)/.15),ease((5.8-st)/.15))
         size=40 if portrait else 36
-        rows=wrap(STORY['scenes'][scene]['caption'],size,w-180 if portrait else 1570)
+        caption=STORY['scenes'][scene]['caption']
+        max_width=w-180 if portrait else 1570
+        rows=wrap(caption,size,max_width)
+        if portrait and len(rows)>1:
+            if scene==7:
+                rows=['大疆4g模块辅助工具，','把连接和消息，照顾得井井有条。']
+            else:
+                # Prefer complete phrases over an orphaned last word.
+                candidates=[]
+                for cut,char in enumerate(caption[:-1],1):
+                    if char not in '，。；':continue
+                    left,right=caption[:cut],caption[cut:]
+                    lw,rw=tile(left,size,WHITE).width,tile(right,size,WHITE).width
+                    if max(lw,rw)<=max_width:candidates.append((abs(lw-rw),[left,right]))
+                if candidates:rows=min(candidates,key=lambda row:row[0])[1]
         tiles=[tile(s,size,WHITE) for s in rows]
         box_w=max(x.width for x in tiles)+64;box_h=32+len(tiles)*(size+13)
         overlay=Image.new('RGBA',(box_w,box_h));rr(overlay,(0,0,box_w-1,box_h-1),19,GREEN)
@@ -412,13 +426,13 @@ def render(mode):
 
 def mux(mode):
     suffix='竖屏' if mode=='portrait' else '横屏'
-    out=ROOT/f'碗里的菜-宣传动画-{suffix}-配音版.mp4'
+    out=ROOT/f'大疆4g模块辅助工具-宣传动画-{suffix}-配音版.mp4'
     audio=ROOT/'audio/mix_mastered.wav'
     if not audio.is_file():raise RuntimeError('Audio master not yet ready')
     with (ROOT/f'mux-{mode}.log').open('w') as log:
         subprocess.run([ffmpeg(),'-y','-i',str(ROOT/f'visuals-{mode}.mp4'),'-i',str(audio),
                         '-map','0:v:0','-map','1:a:0','-c:v','copy','-c:a','aac','-b:a','192k','-ar','48000',
-                        '-t',str(DURATION),'-movflags','+faststart','-metadata','title=碗里的菜 · 4G 模块助手',
+                        '-t',str(DURATION),'-movflags','+faststart','-metadata','title=大疆4g模块辅助工具',
                         '-metadata','comment=中文合成配音与原创音乐；界面为示意，数据为示例。',str(out)],
                        check=True,stdout=log,stderr=log)
     print(out,flush=True)

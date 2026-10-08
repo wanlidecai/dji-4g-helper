@@ -1,8 +1,12 @@
+大疆4g模块辅助工具 Windows x64 版 1.2.2 构建说明
+
 共享后端源代码位于 windows-app/backend，包含Windows移植与本项目的网络、短信和通话改动；macOS应用也使用此后端重新编译。
 
 需要Go 1.26.3以上，Windows x64的libusb1.0 DLL，Python3用于复制许可证和打ZIP。
 构建示例：
 python3 windows-app/build.py --go /path/to/go --libusb-dll /path/to/libusb-1.0.dll --zadig /path/to/zadig-2.9.exe
+
+默认生成大疆4g模块辅助工具-Windows-x64-1.2.2目录和同名ZIP。可用--output-dir指定打包目录，用--archive指定ZIP路径（需在打包目录外）。
 
 可在macOS/Linux交叉编译；不要把macOS dylib交给--libusb-dll。
 两个主程序使用GOOS=windows GOARCH=amd64 CGO_ENABLED=0，-H=windowsgui。

@@ -1,6 +1,6 @@
 # Third-Party Notices
 
-碗里的菜 1.2.1 for Windows x64 includes a modified Windows port of DJOneHub / VoHive.
+大疆4g模块辅助工具 1.2.2 for Windows x64 includes a modified Windows port of DJOneHub / VoHive.
 
 Required Notice: Copyright iniwex5 (https://github.com/iniwex5/vohive)
 

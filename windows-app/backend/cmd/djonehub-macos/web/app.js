@@ -1115,9 +1115,9 @@ $("#answer-call").addEventListener("click",()=>performCallAction("answer"));$("#
 $("#hangup-call").addEventListener("click",()=>performCallAction("hangup"));$("#banner-hangup").addEventListener("click",()=>performCallAction("hangup"));
 $("#banner-view-call").addEventListener("click",()=>showView("calls"));
 document.addEventListener("keydown",event=>{if(event.key==="Escape"&&!$("#compose-modal").hidden)closeCompose();});
-$("#notification-settings").addEventListener("click",()=>{const bridge=window.webkit?.messageHandlers?.app;if(bridge)bridge.postMessage({action:"notificationSettings"});else notice(platform === 'windows' ? '在右下角托盘菜单中开启“短信与来电通知”，并在 Windows 通知设置中允许“碗里的菜”。' : '请在系统通知设置中，允许“碗里的菜”发送通知。');});
+$("#notification-settings").addEventListener("click",()=>{const bridge=window.webkit?.messageHandlers?.app;if(bridge)bridge.postMessage({action:"notificationSettings"});else notice(platform === 'windows' ? '在右下角托盘菜单中开启“短信与来电通知”，并在 Windows 通知设置中允许“大疆4g模块辅助工具”。' : '请在系统通知设置中，允许“大疆4g模块辅助工具”发送通知。');});
 function notificationDescription(state) {
-  if (state.authorization === "denied") return "系统通知未开启。请在系统设置中允许“碗里的菜”发送通知。";
+  if (state.authorization === "denied") return "系统通知未开启。请在系统设置中允许“大疆4g模块辅助工具”发送通知。";
   if (state.authorization !== "authorized") return "允许消息通知后，关闭窗口也能收到新短信和来电提醒。";
   if (!state.enabled) return "系统已允许通知，应用的消息提醒当前关闭。可在菜单栏中开启“消息通知”。";
   return "通知已开启，新短信与来电会在后台提醒你。";

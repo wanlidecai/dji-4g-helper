@@ -181,7 +181,7 @@ final class MessageNotifications: NSObject, UNUserNotificationCenterDelegate {
         let content = UNMutableNotificationContent()
         let title = event["title"] as? String ?? (kind == "sms" ? "新短信" : "来电")
         content.title = demo ? "演示 · \(title)" : title
-        content.body = String((event["body"] as? String ?? "打开碗里的菜查看").prefix(160))
+        content.body = String((event["body"] as? String ?? "打开大疆4g模块辅助工具查看").prefix(160))
         content.sound = .default
         content.threadIdentifier = target
         content.userInfo = ["target": target]

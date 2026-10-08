@@ -22,7 +22,7 @@ import (
 
 const localURL = "http://127.0.0.1:17575"
 const homeURL = localURL + "/?view=network"
-const productName = "碗里的菜"
+const productName = "大疆4g模块辅助工具"
 
 var user32 = syscall.NewLazyDLL("user32.dll")
 var shell32 = syscall.NewLazyDLL("shell32.dll")
@@ -108,7 +108,7 @@ func menu() {
 	for _, item := range []struct {
 		ID    uintptr
 		Title string
-	}{{1, "打开碗里的菜"}, {6, "短信"}, {7, "通话"}, {8, "首页（网络情况）"}, {10, "短信与来电通知"}, {2, "检查并恢复网络"}, {3, "打开日志文件夹"}, {4, "设置登录时自动启动"}, {5, "取消登录时自动启动"}, {9, "退出"}} {
+	}{{1, "打开" + productName}, {6, "短信"}, {7, "通话"}, {8, "首页（网络情况）"}, {10, "短信与来电通知"}, {2, "检查并恢复网络"}, {3, "打开日志文件夹"}, {4, "设置登录时自动启动"}, {5, "取消登录时自动启动"}, {9, "退出"}} {
 		flags := uintptr(0)
 		if item.ID == 10 && notificationsEnabled.Load() {
 			flags = 8 // MF_CHECKED
@@ -439,7 +439,7 @@ func main() {
 	backendLogFile = f
 	log.SetOutput(f)
 	if _, err := os.Stat(filepath.Join(appDir, "runtime", "DJOneHub-backend.exe")); err != nil {
-		message("请先完整解压 ZIP，再运行碗里的菜.exe；runtime 文件夹必须保留在同一目录。")
+		message("请先完整解压 ZIP，再运行" + productName + ".exe；runtime 文件夹必须保留在同一目录。")
 		return
 	}
 	admin := call(shell32, "IsUserAnAdmin")

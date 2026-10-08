@@ -13,21 +13,27 @@ import subprocess
 import zipfile
 
 ROOT=Path(__file__).resolve().parent
-OUTPUT=ROOT.parent / '碗里的菜-Windows-x64-1.2.1'
+APP_NAME='大疆4g模块辅助工具'
+VERSION='1.2.2'
+DEFAULT_OUTPUT=ROOT.parent / f'{APP_NAME}-Windows-x64-{VERSION}'
 
-def build(go, dll, zadig=None):
+def build(go, dll, zadig=None, output=None, archive=None):
+    output=(output or DEFAULT_OUTPUT).expanduser().resolve()
+    archive=(archive or output.parent/(output.name+'.zip')).expanduser().resolve()
+    if output == archive or output in archive.parents:
+        raise ValueError('ZIP archive must be outside the packaged output directory')
     env=dict(os.environ,GOOS='windows',GOARCH='amd64',CGO_ENABLED='0')
     if not (ROOT/'app_windows_amd64.syso').is_file():
         raise FileNotFoundError('Missing embedded brand resource app_windows_amd64.syso')
-    OUTPUT.mkdir(exist_ok=True)
-    runtime=OUTPUT/'runtime';runtime.mkdir(exist_ok=True)
+    output.mkdir(parents=True,exist_ok=True)
+    runtime=output/'runtime';runtime.mkdir(exist_ok=True)
     flags=['build','-trimpath','-ldflags=-H=windowsgui -s -w']
-    subprocess.run([go,*flags,'-o',str(OUTPUT/'碗里的菜.exe'),'.'],cwd=ROOT,env=env,check=True)
+    subprocess.run([go,*flags,'-o',str(output/f'{APP_NAME}.exe'),'.'],cwd=ROOT,env=env,check=True)
     subprocess.run([go,*flags,'-o',str(runtime/'DJOneHub-backend.exe'),'./cmd/djonehub-macos'],cwd=ROOT/'backend',env=env,check=True)
     shutil.copy2(dll,runtime/'libusb-1.0.dll')
-    shutil.copy2(ROOT/'backend/LICENSE',OUTPUT/'LICENSE')
-    shutil.copy2(ROOT/'THIRD_PARTY_NOTICES.md',OUTPUT/'THIRD_PARTY_NOTICES.md')
-    licenses=OUTPUT/'licenses';licenses.mkdir(exist_ok=True)
+    shutil.copy2(ROOT/'backend/LICENSE',output/'LICENSE')
+    shutil.copy2(ROOT/'THIRD_PARTY_NOTICES.md',output/'THIRD_PARTY_NOTICES.md')
+    licenses=output/'licenses';licenses.mkdir(exist_ok=True)
     for existing in licenses.iterdir():
         if existing.is_file(): existing.chmod(existing.stat().st_mode | 0o200)
     libusb_license=ROOT/'libusb-COPYING'
@@ -47,25 +53,28 @@ def build(go, dll, zadig=None):
             if item.is_file():
                 safe_name=module['Path'].replace('/','__')+'__'+filename
                 shutil.copy2(item,licenses/safe_name)
-    (OUTPUT/'使用说明.txt').write_text((ROOT/'使用说明.txt').read_text(),encoding='utf-8-sig')
+    (output/'使用说明.txt').write_text((ROOT/'使用说明.txt').read_text(),encoding='utf-8-sig')
     if zadig:
-        tools=OUTPUT/'工具';tools.mkdir(exist_ok=True);shutil.copy2(zadig,tools/'Zadig-2.9.exe');shutil.copy2(ROOT/'zadig-COPYING',licenses/'zadig-COPYING')
+        tools=output/'工具';tools.mkdir(exist_ok=True);shutil.copy2(zadig,tools/'Zadig-2.9.exe');shutil.copy2(ROOT/'zadig-COPYING',licenses/'zadig-COPYING')
     else:
-        (OUTPUT/'下载WinUSB驱动工具.url').write_text('[InternetShortcut]\nURL=https://zadig.akeo.ie/\n',encoding='utf-8-sig')
-    files=[p for p in sorted(OUTPUT.rglob('*')) if p.is_file() and p.name!='SHA256SUMS.txt']
-    hashes='\n'.join(f'{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.relative_to(OUTPUT).as_posix()}' for p in files)+'\n'
-    (OUTPUT/'SHA256SUMS.txt').write_text(hashes)
-    archive=OUTPUT.parent/(OUTPUT.name+'.zip')
+        (output/'下载WinUSB驱动工具.url').write_text('[InternetShortcut]\nURL=https://zadig.akeo.ie/\n',encoding='utf-8-sig')
+    files=[p for p in sorted(output.rglob('*')) if p.is_file() and p.name!='SHA256SUMS.txt']
+    hashes='\n'.join(f'{hashlib.sha256(p.read_bytes()).hexdigest()}  {p.relative_to(output).as_posix()}' for p in files)+'\n'
+    (output/'SHA256SUMS.txt').write_text(hashes)
+    archive.parent.mkdir(parents=True,exist_ok=True)
     with zipfile.ZipFile(archive,'w',zipfile.ZIP_DEFLATED) as z:
-        for p in sorted(OUTPUT.rglob('*')):
-            if p.is_file(): z.write(p,p.relative_to(OUTPUT.parent))
+        for p in sorted(output.rglob('*')):
+            if p.is_file(): z.write(p,p.relative_to(output.parent))
     print(archive)
     print('SHA256',hashlib.sha256(archive.read_bytes()).hexdigest())
+    return archive
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--go',default=shutil.which('go'),required=shutil.which('go') is None)
     parser.add_argument('--libusb-dll',type=Path,required=True)
     parser.add_argument('--zadig',type=Path)
+    parser.add_argument('--output-dir',type=Path,help='Packaged directory; defaults to the project name and version')
+    parser.add_argument('--archive',type=Path,help='ZIP path outside the packaged directory')
     args=parser.parse_args()
-    build(args.go,args.libusb_dll,args.zadig)
+    build(args.go,args.libusb_dll,args.zadig,args.output_dir,args.archive)

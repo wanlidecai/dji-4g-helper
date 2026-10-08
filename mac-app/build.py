@@ -2,7 +2,7 @@
 """Build the self-contained menu-bar app without installing or launching it.
 
 Requires the Xcode Command Line Tools, Go, pkg-config and libusb development files.
-Run: python3 mac-app/build.py --output build/碗里的菜.app
+Run: python3 mac-app/build.py --output build/大疆4g模块辅助工具.app
 The previous output is replaced only after compilation and signature checks pass.
 """
 
@@ -21,7 +21,7 @@ import tempfile
 
 SOURCE_DIR = Path(__file__).resolve().parent
 WORKSPACE = SOURCE_DIR.parent
-APP_NAME = "碗里的菜"
+APP_NAME = "大疆4g模块辅助工具"
 EXECUTABLE_NAME = "DJI4GHelper"
 BUNDLE_ID = "cn.wanlidecai.dji4g-helper"
 RUNTIME_ITEMS = ("bin", "lib", "licenses", "LICENSE", "THIRD_PARTY_NOTICES.md")
@@ -48,8 +48,8 @@ def make_plist(minimum_macos: str = "13.0") -> dict:
         "CFBundleInfoDictionaryVersion": "6.0",
         "CFBundleName": APP_NAME,
         "CFBundlePackageType": "APPL",
-        "CFBundleShortVersionString": "1.2.1",
-        "CFBundleVersion": "4",
+        "CFBundleShortVersionString": "1.2.2",
+        "CFBundleVersion": "5",
         "LSMinimumSystemVersion": minimum_macos,
         "LSUIElement": True,
         "NSHighResolutionCapable": True,

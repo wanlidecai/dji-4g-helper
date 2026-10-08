@@ -1,6 +1,6 @@
 # DJOneHub：Mac 来电提醒增强版
 
-> 本目录保留 DJOneHub / VoHive 共享后端的原始说明。碗里的菜当前功能、限制和安装步骤以仓库顶层 README 为准；旧版实机截图未包含在公开副本中。
+> 本目录保留 DJOneHub / VoHive 共享后端的原始说明。大疆4g模块辅助工具当前功能、限制和安装步骤以仓库顶层 README 为准；旧版实机截图未包含在公开副本中。
 
 这是在 [DJOneHub](https://github.com/ZenGeekLabs/DJOneHub) 基础上做的 macOS 改造版。原项目解决了大疆第一代 4G 模块在 Mac 上的短信、eSIM 与 USB 4G 上网；这一版把重点放在“模块长期插在 Mac 上时，能不能像一张真正的电话卡一样被看见”。
 

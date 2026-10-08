@@ -3,7 +3,7 @@ import WebKit
 import ServiceManagement
 import Darwin
 
-let appName = "碗里的菜"
+let appName = "大疆4g模块辅助工具"
 let arguments = CommandLine.arguments
 let demoMode = arguments.contains("--demo")
 let portIndex = arguments.firstIndex(of: "--port")
@@ -400,7 +400,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, WKUI
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         statusItem.button?.image = NSImage(systemSymbolName: "leaf", accessibilityDescription: appName)
         statusItem.button?.image?.isTemplate = true
-        statusItem.button?.title = "菜"
+        statusItem.button?.title = "4G"
         statusItem.button?.toolTip = appName
         let menu = NSMenu()
         menu.autoenablesItems = false
@@ -411,7 +411,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, WKUI
         wakeItem = menu.addItem(withTitle: "唤醒恢复：自动", action: nil, keyEquivalent: "")
         wakeItem.isEnabled = false
         menu.addItem(.separator())
-        addItem(menu, "打开碗里的菜首页", #selector(showHome), "o")
+        addItem(menu, "打开大疆4g模块辅助工具首页", #selector(showHome), "o")
         addItem(menu, "短信", #selector(showSMS), "1")
         addItem(menu, "通话", #selector(showCalls), "2")
         startItem = addItem(menu, "重新启动服务", #selector(startOrRestart))
@@ -422,7 +422,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, WKUI
         addItem(menu, "通知设置…", #selector(notificationSettings))
         addItem(menu, "查看日志", #selector(showLogs))
         menu.addItem(.separator())
-        addItem(menu, "退出碗里的菜", #selector(quit), "q")
+        addItem(menu, "退出大疆4g模块辅助工具", #selector(quit), "q")
         statusItem.menu = menu
         backend.onChange = { [weak self] in self?.update() }
         wakeRecovery.onChange = { [weak self] in self?.update() }
@@ -512,7 +512,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, WKUI
             if webView?.url?.host != "127.0.0.1" { webView?.load(URLRequest(url: pageURL)) }
         } else {
             pendingWindowLoad = true
-            webView?.loadHTMLString("<meta charset='utf-8'><style>body{background:#f8f7f2;font:16px -apple-system;padding:80px;color:#28634e}h1{font-size:32px;letter-spacing:2px}p{color:#6b746e;line-height:1.8}</style><h1>碗里的菜</h1><p>正在准备网络、短信和通话…</p><p>连接完成后会自动打开。关闭窗口后，仍会在菜单栏后台运行。</p>", baseURL: nil)
+            webView?.loadHTMLString("<meta charset='utf-8'><style>body{background:#f8f7f2;font:16px -apple-system;padding:80px;color:#28634e}h1{font-size:32px;letter-spacing:2px}p{color:#6b746e;line-height:1.8}</style><h1>大疆4g模块辅助工具</h1><p>正在准备网络、短信和通话…</p><p>连接完成后会自动打开。关闭窗口后，仍会在菜单栏后台运行。</p>", baseURL: nil)
         }
         managerWindow?.makeKeyAndOrderFront(nil)
         NSApp.activate(ignoringOtherApps: true)
@@ -539,7 +539,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate, WKUI
         notificationsItem?.title = messages.label
         notificationsItem?.state = messages.enabled && messages.isAuthorized ? .on : .off
         let count = messages.unreadSMS + messages.missedCalls
-        statusItem?.button?.title = count > 0 ? "菜 \(min(count, 99))" : "菜"
+        statusItem?.button?.title = count > 0 ? "4G \(min(count, 99))" : "4G"
         let json: [String: Any] = ["authorization": messages.authorization, "enabled": messages.enabled]
         if let data = try? JSONSerialization.data(withJSONObject: json), let text = String(data: data, encoding: .utf8) {
             webView?.evaluateJavaScript("window.dispatchEvent(new CustomEvent('wanli:notification-status',{detail:\(text)}))")

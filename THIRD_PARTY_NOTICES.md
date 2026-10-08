@@ -1,6 +1,6 @@
 # Third-Party Notices / 第三方组件声明
 
-“碗里的菜”包含基于 [DJOneHub](https://github.com/ZenGeekLabs/DJOneHub) 和 [VoHive](https://github.com/iniwex5/vohive) 演进的代码，以及本仓库的桌面启动器、通知、唤醒恢复和界面改动。
+“大疆4g模块辅助工具”包含基于 [DJOneHub](https://github.com/ZenGeekLabs/DJOneHub) 和 [VoHive](https://github.com/iniwex5/vohive) 演进的代码，以及本仓库的桌面启动器、通知、唤醒恢复和界面改动。
 
 后端源代码位于 `windows-app/backend/`，同时供 Mac 与 Windows 构建使用。原后端许可证和来源声明完整保留于：
 
@@ -18,12 +18,12 @@ Required Notice: Copyright iniwex5 (https://github.com/iniwex5/vohive)
 
 ## libusb
 
-发行包包含动态加载的 libusb。v1.2.1 发布包使用 **libusb 1.0.30**，许可为 **GNU Lesser General Public License 2.1 或更新版本**。
+发行包包含动态加载的 libusb。v1.2.2 发布包使用 **libusb 1.0.30**，许可为 **GNU Lesser General Public License 2.1 或更新版本**。
 
 - 项目主页：<https://libusb.info/>
 - 该版本源码：<https://github.com/libusb/libusb/releases/tag/v1.0.30>
 - 原始许可文本：[`windows-app/libusb-COPYING`](windows-app/libusb-COPYING)
-- Mac 发行包库路径：`碗里的菜.app/Contents/Resources/runtime/lib/libusb-1.0.0.dylib`
+- Mac 发行包库路径：`大疆4g模块辅助工具.app/Contents/Resources/runtime/lib/libusb-1.0.0.dylib`
 - Windows 发行包库路径：`runtime/libusb-1.0.dll`
 - 发行包同时保留 `licenses/libusb-COPYING`。
 
