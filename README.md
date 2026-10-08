@@ -16,8 +16,8 @@
 
 | 系统 | 下载文件 | 使用方式 |
 | --- | --- | --- |
-| Apple 芯片 Mac，macOS 13 及以上 | `碗里的菜-Mac-1.2.1.zip` | 解压后将 `碗里的菜.app` 放到应用程序目录，双击启动；从菜单栏打开首页、短信或通话。 |
-| Windows 10 / 11，Intel / AMD 64 位 | `碗里的菜-Windows-x64-1.2.1.zip` | 完整解压并保留 `runtime` 文件夹，双击 `碗里的菜.exe`；从右下角托盘打开页面。Windows 版仍待实机验证。 |
+| Apple 芯片 Mac，macOS 13 及以上 | `wanlidecai-Mac-1.2.1.zip` | 解压后将 `碗里的菜.app` 放到应用程序目录，双击启动；从菜单栏打开首页、短信或通话。 |
+| Windows 10 / 11，Intel / AMD 64 位 | `wanlidecai-Windows-x64-1.2.1.zip` | 完整解压并保留 `runtime` 文件夹，双击 `碗里的菜.exe`；从右下角托盘打开页面。Windows 版仍待实机验证。 |
 
 当前针对大疆第一代 4G 模块开发，已识别样机 USB ID 为 `2ca3:4006`。使用支持数据传输的 USB 线，并插入可用 SIM 卡。其他模块、固件和 SIM 的兼容性需要另行验证。
 

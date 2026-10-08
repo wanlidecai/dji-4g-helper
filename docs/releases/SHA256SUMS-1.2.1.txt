@@ -1,0 +1,5 @@
+2be3ac555638caff892f69d03285f065633a0538b0d942de1135719194c693ab  wanlidecai-Mac-1.2.1.zip
+3c74b7eecb2aa544298eba357850699916d20bd7ba292eb582d6da6f354b0d5c  wanlidecai-Windows-x64-1.2.1.zip
+6dad9d82398d25556efa05f16d9c8bf357aa580529aaf6ac25fac6ab89d30036  wanlidecai-promo-landscape-1.2.1.mp4
+9ee2d0eec3d68820c9515dbc01fea2844dcc258a6c7f57b83fa8eb877241a3a0  wanlidecai-promo-portrait-1.2.1.mp4
+b7b68d4cdb7cac53556622605e2a90f2dd15560d3a5c74dadcbbfb693a029a99  wanlidecai-promo-materials-1.2.1.zip
